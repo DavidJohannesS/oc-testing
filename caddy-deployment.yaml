@@ -13,7 +13,7 @@ spec:
         app: caddy
     spec:
       securityContext:
-        runAsNonRoot: true
+        runAsNonRoot: false
       containers:
       - name: caddy
         image: caddy:latest
@@ -28,10 +28,9 @@ spec:
           seccompProfile:
             type: RuntimeDefault
         volumeMounts:
-        - mountPath: /etc/caddy/Caddyfile
+        - mountPath: /etc/caddy/
           name: caddyfile
       volumes:
       - name: caddyfile
-        persistentVolumeClaim:
-          claimName: caddy-pvc
+        emptyDir: {}
 

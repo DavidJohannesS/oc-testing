@@ -1,0 +1,18 @@
+{
+    auto_https off
+}
+
+:80 {
+    root * /usr/share/caddy
+    file_server
+    file_server browse {
+        index index.html
+    }
+    @jsFiles {
+        path *.js
+    }
+    header @jsFiles {
+        Content-Type application/javascript
+    }
+}
+
